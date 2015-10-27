@@ -1,6 +1,8 @@
 package txrx;
 
 import com.digi.xbee.api.*;
+import com.digi.xbee.api.exceptions.XBeeException;
+import com.digi.xbee.api.listeners.IDataReceiveListener;
 
 import startprogram.StartProgram;
 
@@ -36,19 +38,21 @@ public class XBeeTxRx {
 		//Try and open the connection to the xbee else throw an error message.
 		try{
 			localXBee.open();
-			
-            // Obtain the remote XBee device from the XBee network.
-            xbeeNetwork = localXBee.getNetwork();
-            remoteXBee = xbeeNetwork.discoverDevice(REMOTE_NODE_IDENTIFIER);
-            
-            //When there is not a remote xbee show a 
-            if (remoteXBee == null)
-            {
-            	//TODO need 
-            }
+			//TODO Network Configuration?
+		} catch (XBeeException e) {
+			e.printStackTrace();
+			System.out.println("Problem connecting XBee. COM Port correct?");
+			System.exit(1);
 		}
+		
+		// Create the data reception listener
+		Listener DataListener = new Listener();
+		 
+		// Subscribe to data reception.
+		localXBee.addDataListener(DataListener);
+		
+		
 	}
 	
-	public void sendCommand()
-
+	
 }
