@@ -1,5 +1,6 @@
-public class XbeeTx {
-	package com.digi.xbee.hwracing;
+package txrx;
+
+
 
 	import com.digi.xbee.api.RemoteXBeeDevice; 
 	import com.digi.xbee.api.XBeeDevice;
@@ -16,7 +17,7 @@ public class XbeeTx {
 	 * <p>For a complete description on the example, refer to the 'ReadMe.txt' file
 	 * included in the root directory.</p>
 	 */
-	public class SendMessage {
+	public class XBeeTx {
 	    
 	    /* Constants */
 	    

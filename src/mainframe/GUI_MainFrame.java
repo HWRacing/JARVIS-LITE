@@ -84,14 +84,6 @@ public class GUI_MainFrame extends JXFrame implements Runnable,WindowListener {
 			//Setting OS Look and Feel
 			settingWindowsLookAndFeel();
 			
-			//Setting Frame Name
-			this.setTitle("JARVIS LITE");
-			ImageIcon icon = new ImageIcon("Icon.JPG");
-			this.setIconImage(icon.getImage());
-			//Setting Maximised
-			this.setExtendedState(JXFrame.MAXIMIZED_BOTH);
-			this.setVisible(true);
-		
 			//Create Select COMPORT Window
 			GUI_COMPort comPort_FRA = new GUI_COMPort(this,startProgram);
 			comPort_FRA.setVisible(true);
@@ -100,6 +92,15 @@ public class GUI_MainFrame extends JXFrame implements Runnable,WindowListener {
 			GUI_FileConfig fileConfig_FRA = new GUI_FileConfig(this);
 			Thread tFileConfig_FRA = new Thread(fileConfig_FRA);
 			tFileConfig_FRA.start();
+			
+			//Setting Frame Name
+			this.setTitle("JARVIS LITE");
+			ImageIcon icon = new ImageIcon("Icon.JPG");
+			this.setIconImage(icon.getImage());
+			//Setting Maximised
+			this.setExtendedState(JXFrame.MAXIMIZED_BOTH);
+			this.setVisible(true);
+	
 			//Add Panels
 			
 			

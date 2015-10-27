@@ -2,6 +2,8 @@ package fileconfiguration;
 
 import javax.swing.*;
 
+import com.digi.xbee.api.XBeeDevice;
+
 import mainframe.GUI_MainFrame;
 import startprogram.StartProgram;
 
@@ -14,6 +16,7 @@ public class GUI_COMPort extends JOptionPane{
 	
 	String [] comPortStrings;
 	String comPortSelectedByUser;
+	
 	
 	public GUI_COMPort(GUI_MainFrame mainFrame,StartProgram startProgram)
 	{
@@ -34,15 +37,15 @@ public class GUI_COMPort extends JOptionPane{
 			comPortStrings[6] = new String("COM7");
 			comPortStrings[7] = new String("COM8");
  		
-			 comPortSelectedByUser = (String) JOptionPane.showInputDialog(null, "Please select the COM port that the Xbee is connected to.\nPlease See Device Manager.","Select COM Port", JOptionPane.OK_CANCEL_OPTION, null, comPortStrings, comPortStrings[0]);
+			 comPortSelectedByUser = (String) JOptionPane.showInputDialog(main_FRA, "Please select the COM port that the Xbee is connected to.\nPlease See Device Manager.","Select COM Port", JOptionPane.OK_CANCEL_OPTION, null, comPortStrings, comPortStrings[0]);
 			
 			 if (comPortSelectedByUser.equals(null))
 			 {
-				 main_FRA.closeProgram();
+				 	main_FRA.closeProgram();
 					System.exit(1);
 			 }else
 			 {
-			 startProgram.setCOMPortAndCreateXbee(comPortSelectedByUser);
+				 startProgram.createXBeeTxRx(comPortSelectedByUser);
 			 }
 	}
 	

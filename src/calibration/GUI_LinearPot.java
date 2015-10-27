@@ -9,7 +9,7 @@ public class GUI_LinearPot extends JPanel {
 	
 	public GUI_LinearPot() 
 	{
-		
+		initialiseGUI();
 	}
 	
 	//Initialise GUI
