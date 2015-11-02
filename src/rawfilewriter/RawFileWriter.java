@@ -13,6 +13,7 @@ public class RawFileWriter {
 	File filePath;
 	String currentFilePath;
 	FileOutputStream fileOutputStream;
+	private Object file;
 	
 	public RawFileWriter(File filePath)
 	{
@@ -27,20 +28,40 @@ public class RawFileWriter {
 	
 	private void setCurrentFilePath()
 	{
-		DateFormat dateFormat = new SimpleDateFormat("yyyyddMMTHH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyyddMMHHmmss");
 		Date currentDateTime = new Date();
 		String tempString = dateFormat.format(currentDateTime);
 		
-		currentFilePath= filePath.toString() + "//" + tempString + ".bin";
+		currentFilePath= filePath.toString() + System.getProperty("file.separator") + tempString + ".bin";
+		System.out.println(currentFilePath);
+		File currentFile = new File(currentFilePath);
+		
+		if (currentFile.exists()==false)
+		{
+			try {
+				currentFile.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		
 	}
 	
 	public void writeToBinaryFile(byte[] byteToWrite) throws FileNotFoundException
 	{
+		setCurrentFilePath();
+		
 		//Create a new FileOutputStream if the file doesn't exist
 		if (writeCounter==0)
 		{
 			fileOutputStream = new FileOutputStream(currentFilePath);
+		}
+		
+		if (writeCounter%10==0)
+		{
+			fileOutputStream = new FileOutputStream(currentFilePath,true);
 		}
 		
 		if (writeCounter>1000)
