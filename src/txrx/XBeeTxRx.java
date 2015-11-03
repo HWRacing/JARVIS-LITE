@@ -46,7 +46,7 @@ public class XBeeTxRx {
 		}
 		
 		// Create the data reception listener
-		Listener DataListener = new Listener();
+		Listener DataListener = new Listener(startProgram);
 		 
 		// Subscribe to data reception.
 		localXBee.addDataListener(DataListener);

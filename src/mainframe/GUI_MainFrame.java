@@ -11,6 +11,7 @@ import graphs.GRAPH_CoolantTemperature;
 
 import java.awt.event.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.awt.*;
 
@@ -169,6 +170,7 @@ public class GUI_MainFrame extends JXFrame implements Runnable,WindowListener {
 	public void updateFilePaths(File[] files_F) {
 		
 		this.file_F = files_F;
+		startProgram.createRawFileWriter(files_F[0]);
 	}
 	//Method to get the FilesPaths for Users and Raw Data etc
 	public File[] getFiles()

@@ -13,12 +13,13 @@ public class testRawFileWriter {
 		
 		RawFileWriter testFileWriter = new RawFileWriter(testFile);
 		
-		byte [] testArray = new byte[5];
+		byte [] testArray = new byte[6];
 		testArray[0] = 100;
 		testArray[1] = 50;
 		testArray[2] = 75;
 		testArray[3] = -24;
 		testArray[4] = 6;
+		testArray[5] = 100;
 		
 		Random rand = new Random();
 		byte [] byteToWrite = testArray;

@@ -13,7 +13,6 @@ public class RawFileWriter {
 	File filePath;
 	String currentFilePath;
 	FileOutputStream fileOutputStream;
-	private Object file;
 	
 	public RawFileWriter(File filePath)
 	{
@@ -50,16 +49,15 @@ public class RawFileWriter {
 	}
 	
 	public void writeToBinaryFile(byte[] byteToWrite) throws FileNotFoundException
-	{
-		setCurrentFilePath();
-		
+	{	
 		//Create a new FileOutputStream if the file doesn't exist
 		if (writeCounter==0)
 		{
+			setCurrentFilePath();
 			fileOutputStream = new FileOutputStream(currentFilePath);
 		}
 		
-		if (writeCounter%10==0)
+		if (writeCounter/100==0)
 		{
 			fileOutputStream = new FileOutputStream(currentFilePath,true);
 		}
@@ -68,12 +66,13 @@ public class RawFileWriter {
 		{
 			setCurrentFilePath();
 			fileOutputStream = new FileOutputStream(currentFilePath);
+			writeCounter = 0;
 		}
 		
 		try {
 			fileOutputStream.write(byteToWrite);
 			writeCounter++;
-			if(writeCounter%10==0)
+			if(writeCounter%100==0)
 			{
 				fileOutputStream.close();
 			}

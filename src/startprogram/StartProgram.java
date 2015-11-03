@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import fileconfiguration.GUI_COMPort;
 import mainframe.GUI_MainFrame;
+import rawfilewriter.RawFileWriter;
 import txrx.XBeeTxRx;
 
 
@@ -17,7 +18,8 @@ public class StartProgram {
 	
 	GUI_MainFrame mainFrame_FRA;
 
-
+	//Raw File Writeroutput
+	RawFileWriter rawFileWriter;
 	
 	
 	//TODO Need to remove this file system part a some part and replace 
@@ -34,13 +36,21 @@ public class StartProgram {
 		Thread tMainFrame_FRA = new Thread(mainFrame_FRA);
 		tMainFrame_FRA.start();
 		
-
+		
+		
 	}
 	
 	public void createXBeeTxRx(String comPort)
 	{
 		xbee = new XBeeTxRx(BAUD_RATE,comPort, this);
 	}
+	
+	public void createRawFileWriter(File file)
+	{
+		rawFileWriter = new RawFileWriter(file);
+		xbee.openConnectionToXbee();
+	}
+	
 	
 	public GUI_MainFrame getMainFrame()
 	{
@@ -62,6 +72,10 @@ public class StartProgram {
 		GUI_COMPort getDifferentPort = new GUI_COMPort(mainFrame_FRA,this);
 	}
 	
+	public RawFileWriter getRawFileWriter()
+	{
+		return rawFileWriter;
+	}
 	
 	
 	//Static method to start the whole program
