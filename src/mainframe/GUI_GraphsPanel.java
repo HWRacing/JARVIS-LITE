@@ -19,7 +19,9 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	JPanel externalSensor_PAN;
 	JPanel ecuSensor_PAN;
 	JPanel sensor_PAN;
-	GRAPH_BasicTimeSeriesChart [] externalTimeSeriesChart = new GRAPH_BasicTimeSeriesChart[4];
+	
+	GRAPH_BasicTimeSeriesChart [] externalTimeSeriesChart = new GRAPH_BasicTimeSeriesChart[5];
+	Thread [] externalTimeSeriesThreads = new Thread[externalTimeSeriesChart.length];
 	boolean [] externalTimeSeriesEnabled = new boolean[externalTimeSeriesChart.length];
 	
 	GRAPH_BasicTimeSeriesChart [] ecuTimeSeriesChart = new GRAPH_BasicTimeSeriesChart[2];
@@ -28,16 +30,13 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	{
 		this.parent_FRA = parent_FRA;
 		this.addComponentListener(this);
-		createExternalSensorsPanel();
+		createGraphsExternalSensors();
 	}
 		
 	
-	private void createExternalSensorsPanel()
-	{
-		externalSensor_PAN = new JPanel();
-		externalSensor_PAN.setLayout(new GridLayout(3,3));
-		
-		
+	private void createGraphsExternalSensors()
+	{	
+		externalSensor_PAN = new JPanel(new GridLayout(3,3));
 		
 		//Creating Array to hold the DatasetTitles
 		String[] pedalForceDataSetTitles = new String[2];
@@ -45,15 +44,23 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 		pedalForceDataSetTitles[1] = "Brake";
 		
 		
-		externalTimeSeriesChart[0] = new GRAPH_BasicTimeSeriesChart("Coolant Temperature","Time","°C","Temperature",0, 100,20,400);
+		
+		externalTimeSeriesChart[0] = new GRAPH_BasicTimeSeriesChart("Coolant Temperature","Time","°C","Temperature",0, 100,150,400);
 		externalTimeSeriesChart[1] = new GRAPH_BasicTimeSeriesChart("Exhaust Temperature","Time","°C","Temperature",0, 200,150,400);
 		externalTimeSeriesChart[2] = new GRAPH_BasicTimeSeriesChart("Oil Temperature","Time","°C","Temperature",0,200,150,400);
 		externalTimeSeriesChart[3] = new GRAPH_BasicTimeSeriesChart("Pedal Force","Time","Force (N)",pedalForceDataSetTitles,0,100,150,400,2);
+		externalTimeSeriesChart[4] = new GRAPH_BasicTimeSeriesChart("Steering Angle","Time","°","Angle",-130,130,150,400);
 		
+		//Creating separate threads for each time series chart
+		for (int i=0;i<externalTimeSeriesChart.length;i++)
+		{
+			externalTimeSeriesThreads[i] = new Thread(externalTimeSeriesChart[i]);
+			externalTimeSeriesThreads[i].start();
+		}
 		
-		addExternalChartsToExternalPanell();
+		addExternalChartsToExternalPanel();
 		
-		this.add(externalSensor_PAN);
+
 		
 			}
 	
@@ -64,14 +71,16 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	}
 	
 	
-	private void addExternalChartsToExternalPanell()
+	private void addExternalChartsToExternalPanel()
 	{
 		for(int i = 0; i<externalTimeSeriesChart.length;i++)
 		{
-			externalTimeSeriesEnabled[i] =false;
-			externalSensor_PAN.add(externalTimeSeriesChart[i].getChartPanel());
-			setTimeSeriesChartSize(externalTimeSeriesChart[i]);
+			if(externalTimeSeriesEnabled[i] ==true)
+			{
+				externalSensor_PAN.add(externalTimeSeriesChart[i].getChartPanel());
+			}
 		}
+		this.add(externalSensor_PAN);
 	}
 	
 	
