@@ -16,7 +16,7 @@ import org.jfree.data.time.RegularTimePeriod;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
-public class GRAPH_BasicTimeSeriesChart {
+public class GRAPH_BasicTimeSeriesChart  implements Runnable {
 	String titleOfGraph;
 	String titleOfDomain;
 	String titleOfRange;
@@ -71,23 +71,6 @@ public class GRAPH_BasicTimeSeriesChart {
 			this.minRangeValue = minRangeValue;
 			this.maxRangeValue = maxRangeValue;
 			chartPanelDimension = new Dimension(width,height);
-			
-			timeSeries = new TimeSeries[1];
-			timeSeries[0] = new TimeSeries(titleOfTimeSeries[0],titleOfDomain,titleOfRange);
-			
-			dataSet = new TimeSeriesCollection(timeSeries[0]);
-			
-			//Creating Chart
-			chart = createChart();
-			
-			//Changing the Axis
-			changeRange(minRangeValue,maxRangeValue,30000);
-			
-			removeDatasetLabel();
-			
-			//Creating ChartPanel
-			chartPanel = new ChartPanel(chart);
-			chartPanel.setSize(chartPanelDimension);
 		}
 		//Initialising the Dataset with the timeseries
 
@@ -142,6 +125,25 @@ public class GRAPH_BasicTimeSeriesChart {
 	public ChartPanel getChartPanel()
 	{
 		return chartPanel;
+	}
+	public void run() {
+		timeSeries = new TimeSeries[1];
+		timeSeries[0] = new TimeSeries(titleOfTimeSeries[0],titleOfDomain,titleOfRange);
+		
+		dataSet = new TimeSeriesCollection(timeSeries[0]);
+		
+		//Creating Chart
+		chart = createChart();
+		
+		//Changing the Axis
+		changeRange(minRangeValue,maxRangeValue,30000);
+		
+		removeDatasetLabel();
+		
+		//Creating ChartPanel
+		chartPanel = new ChartPanel(chart);
+		chartPanel.setSize(chartPanelDimension);
+		
 	}
 	
 }
