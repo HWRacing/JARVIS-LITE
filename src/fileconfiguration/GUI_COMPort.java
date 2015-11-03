@@ -50,7 +50,7 @@ public class GUI_COMPort extends JOptionPane{
 					startProgram.createXBeeTxRx(comPortSelectedByUser);
 				} catch (XBeeException e) {
 					JOptionPane.showMessageDialog(main_FRA, "Please ensure the XBee is connected and the correct COM port is selected. ");
-					comPortSelectedByUser = (String) JOptionPane.showInputDialog(main_FRA, "Please select the COM port that the Xbee is connected to.\nPlease See Device Manager.","Select COM Port", JOptionPane.OK_CANCEL_OPTION, null, comPortStrings, comPortStrings[0]);
+					GUI_COMPort newComPortGUI =  new GUI_COMPort(main_FRA,startProgram);
 				
 				}
 			 }

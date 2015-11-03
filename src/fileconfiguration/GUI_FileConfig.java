@@ -91,10 +91,10 @@ public class GUI_FileConfig extends JDialog implements Runnable {
 					}
 					JOptionPane.showMessageDialog(null, "The File Paths are: \nRAW Files Path: " + files_F[0].getAbsolutePath() + "\nProcessed Files Path: " + files_F[1] +"\nUsername File Path: " + files_F[2] + "\nTesting Log File Path: " + files_F[3] , "File Paths", JOptionPane.INFORMATION_MESSAGE, null);
 					parent_FRA.updateFilePaths(files_F);
-					parent_FRA.revalidate();
-					 closeWindow();
+					GUI_COMPort comPortGUI = new GUI_COMPort(parent_FRA,parent_FRA.getStartProgram());
+					closeWindow();
 				}
-		
+		;
 			});
 	cancel_BUT=new JButton("Cancel");
 	cancel_BUT.addActionListener(new ActionListener()
@@ -102,6 +102,8 @@ public class GUI_FileConfig extends JDialog implements Runnable {
 				public void actionPerformed(ActionEvent e)
 				{
 					closeWindow();
+					parent_FRA.closeProgram();
+					System.exit(DISPOSE_ON_CLOSE);
 			}
 	});
 	//A

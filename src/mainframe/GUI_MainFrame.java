@@ -90,10 +90,6 @@ public class GUI_MainFrame extends JXFrame implements Runnable,WindowListener {
 			Thread tFileConfig_FRA = new Thread(fileConfig_FRA);
 			tFileConfig_FRA.start();
 			
-			//Create Select COMPORT Window
-			GUI_COMPort comPort_FRA = new GUI_COMPort(this,startProgram);
-			comPort_FRA.setVisible(true);
-			
 			//Setting Frame Name
 			this.setTitle("JARVIS LITE");
 			ImageIcon icon = new ImageIcon("Icon.JPG");
@@ -185,6 +181,10 @@ public class GUI_MainFrame extends JXFrame implements Runnable,WindowListener {
 	
 	// Window Listener to close the window when the close button is pressed
 	
+	public StartProgram getStartProgram()
+	{
+		return startProgram;
+	}
 	
 	public void closeProgram()
 	{
