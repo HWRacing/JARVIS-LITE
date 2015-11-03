@@ -1,9 +1,12 @@
 package txrx;
 
+import javax.swing.JOptionPane;
+
 import com.digi.xbee.api.*;
 import com.digi.xbee.api.exceptions.XBeeException;
 import com.digi.xbee.api.listeners.IDataReceiveListener;
 
+import fileconfiguration.GUI_COMPort;
 import startprogram.StartProgram;
 
 /**This class is for the XBee Transmission and Receiving*/
@@ -33,17 +36,10 @@ public class XBeeTxRx {
 		localXBee = new XBeeDevice(comPort,baudRate);
 	}
 	
-	public void openConnectionToXbee()
+	public void openConnectionToXbee() throws XBeeException
 	{
 		//Try and open the connection to the xbee else throw an error message.
-		try{
 			localXBee.open();
-			//TODO Network Configuration?
-		} catch (XBeeException e) {
-			e.printStackTrace();
-			System.out.println("Problem connecting XBee. COM Port correct?");
-			System.exit(1);
-		}
 		
 		// Create the data reception listener
 		Listener DataListener = new Listener(startProgram);

@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
+
+import com.digi.xbee.api.exceptions.XBeeException;
+
 import fileconfiguration.GUI_COMPort;
 import mainframe.GUI_MainFrame;
 import rawfilewriter.RawFileWriter;
@@ -40,15 +43,15 @@ public class StartProgram {
 		
 	}
 	
-	public void createXBeeTxRx(String comPort)
+	public void createXBeeTxRx(String comPort)  throws XBeeException
 	{
 		xbee = new XBeeTxRx(BAUD_RATE,comPort, this);
+		xbee.openConnectionToXbee();
 	}
 	
 	public void createRawFileWriter(File file)
 	{
 		rawFileWriter = new RawFileWriter(file);
-		xbee.openConnectionToXbee();
 	}
 	
 	

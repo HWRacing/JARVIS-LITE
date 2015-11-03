@@ -85,14 +85,14 @@ public class GUI_MainFrame extends JXFrame implements Runnable,WindowListener {
 			//Setting OS Look and Feel
 			settingWindowsLookAndFeel();
 			
-			//Create Select COMPORT Window
-			GUI_COMPort comPort_FRA = new GUI_COMPort(this,startProgram);
-			comPort_FRA.setVisible(true);
-			
 			//Create FileConfig Window
 			GUI_FileConfig fileConfig_FRA = new GUI_FileConfig(this);
 			Thread tFileConfig_FRA = new Thread(fileConfig_FRA);
 			tFileConfig_FRA.start();
+			
+			//Create Select COMPORT Window
+			GUI_COMPort comPort_FRA = new GUI_COMPort(this,startProgram);
+			comPort_FRA.setVisible(true);
 			
 			//Setting Frame Name
 			this.setTitle("JARVIS LITE");
