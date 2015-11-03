@@ -88,7 +88,7 @@ public class GUI_MenuBar extends JMenuBar{
 				{
 			public void actionPerformed(ActionEvent e)
 			{
-				GUI_COMPort comPort_JOption = new GUI_COMPort(mainFrame_FRA);
+				GUI_COMPort comPort_JOption = new GUI_COMPort(mainFrame_FRA,mainFrame_FRA.getStartProgram());
 				comPort_JOption.setVisible(true);
 			}
 				});

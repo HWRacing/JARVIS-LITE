@@ -28,7 +28,7 @@ public class GUI_COMPort extends JOptionPane{
 	
 	public void initialiseGUI()
 	{
-			comPortStrings = new String[8];
+			comPortStrings = new String[10];
 			comPortStrings[0] = new String("COM1");
 			comPortStrings[1] = new String("COM2");
 			comPortStrings[2] = new String("COM3");
@@ -37,6 +37,8 @@ public class GUI_COMPort extends JOptionPane{
 			comPortStrings[5] = new String("COM6");
 			comPortStrings[6] = new String("COM7");
 			comPortStrings[7] = new String("COM8");
+			comPortStrings[8] = new String("/dev/ttyUSB0");
+			comPortStrings[9] = new String("/dev/ttyUSB1");
  		
 			 comPortSelectedByUser = (String) JOptionPane.showInputDialog(main_FRA, "Please select the COM port that the Xbee is connected to.\nPlease See Device Manager.","Select COM Port", JOptionPane.OK_CANCEL_OPTION, null, comPortStrings, comPortStrings[0]);
 			

@@ -24,9 +24,6 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	
 	GRAPH_BasicTimeSeriesChart [] ecuTimeSeriesChart = new GRAPH_BasicTimeSeriesChart[2];
 	
-	
-	GRAPH_BasicMeterChart testChart;
-	
 	public GUI_GraphsPanel(GUI_MainFrame parent_FRA)
 	{
 		this.parent_FRA = parent_FRA;
@@ -41,22 +38,21 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 		externalSensor_PAN.setLayout(new GridLayout(3,3));
 		
 		
-		//Creating Arrays with each 
-
-		String[] pedalForceTitle = new String[2];
-		pedalForceTitle[0] = "Acceleration";
-		pedalForceTitle[1] = "Brake";
+		
+		//Creating Array to hold the DatasetTitles
+		String[] pedalForceDataSetTitles = new String[2];
+		pedalForceDataSetTitles[0] = "Acceleration";
+		pedalForceDataSetTitles[1] = "Brake";
+		
 		
 		externalTimeSeriesChart[0] = new GRAPH_BasicTimeSeriesChart("Coolant Temperature","Time","°C","Temperature",0, 100,20,400);
 		externalTimeSeriesChart[1] = new GRAPH_BasicTimeSeriesChart("Exhaust Temperature","Time","°C","Temperature",0, 200,150,400);
 		externalTimeSeriesChart[2] = new GRAPH_BasicTimeSeriesChart("Oil Temperature","Time","°C","Temperature",0,200,150,400);
-		externalTimeSeriesChart[3] = new GRAPH_BasicTimeSeriesChart("Pedal Force","Time","Force (N)",pedalForceTitle,0,100,150,400,2);
+		externalTimeSeriesChart[3] = new GRAPH_BasicTimeSeriesChart("Pedal Force","Time","Force (N)",pedalForceDataSetTitles,0,100,150,400,2);
 		
 		
 		addExternalChartsToExternalPanell();
 		
-		 testChart= new GRAPH_BasicMeterChart();
-		externalSensor_PAN.add(testChart.createPanel());
 		this.add(externalSensor_PAN);
 		
 			}
@@ -65,7 +61,6 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	private void createECUSensorsPanel()
 	{
 		ecuSensor_PAN = new JPanel(new FlowLayout());
-		
 	}
 	
 	
@@ -84,31 +79,6 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	{
 		Date date = new Date();
 		externalTimeSeriesChart[0].addPoint(value,date,0);
-		
-		
-		/*while (true)
-		{
-			int counter =0;
-			Random rand = new Random();
-			for(int i = 0; i<externalTimeSeriesChart.length;i++)
-			{
-				float point = rand.nextFloat();
-				Date currentDate = new Date();
-				externalTimeSeriesChart[i].addPoint(point,currentDate,0);
-			}
-			float point = rand.nextFloat();
-			Date currentDate = new Date();
-			externalTimeSeriesChart[3].addPoint(point*100,currentDate,1);
-			
-			testChart.addPoint(counter);
-			counter++;
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			}*/
 	}
 	
 	private void setTimeSeriesChartSize(GRAPH_BasicTimeSeriesChart chart)
@@ -121,7 +91,6 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	}
 
 
-	@Override
 	public void componentResized(ComponentEvent e) {
 		// TODO Auto-generated method stub
 		for ( int i = 0; i<externalTimeSeriesChart.length;i++)
@@ -132,21 +101,21 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	}
 
 
-	@Override
+
 	public void componentMoved(ComponentEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	@Override
+
 	public void componentShown(ComponentEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	@Override
+
 	public void componentHidden(ComponentEvent e) {
 		// TODO Auto-generated method stub
 		
