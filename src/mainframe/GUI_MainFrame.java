@@ -196,6 +196,11 @@ public class GUI_MainFrame extends JXFrame implements Runnable,WindowListener {
 		status_BAR.setRecording(recording);
 	}
 
+	public GUI_GraphsPanel getGraphsPanel()
+	{
+		return graphs_PAN;
+	}
+	
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub

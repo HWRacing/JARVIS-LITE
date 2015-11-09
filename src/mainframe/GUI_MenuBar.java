@@ -99,8 +99,6 @@ public class GUI_MenuBar extends JMenuBar{
 				openXCTU();
 			}
 				});
-		
-		
 		fileMenuItems[4].addActionListener(new ActionListener()
 				{
 			public void actionPerformed(ActionEvent e)
@@ -113,6 +111,89 @@ public class GUI_MenuBar extends JMenuBar{
 		for(int i =0;i<fileMenuItems.length;i++)
 		{
 			menus[0].add(fileMenuItems[i]);
+		}
+	}
+	
+	private void addActionListenerToExternalSensorsMenu()
+	{
+		for(int i=0;i<externalSensorMenuItems.length;i++)
+		{
+			externalSensorMenuItems[i].addActionListener(new ActionListener()
+			{
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JMenuItem activatedItem =(JMenuItem)  e.getSource();
+					String itemString = activatedItem.getText();
+					//Case Statement to deal to enable the correct item.
+					
+					switch (itemString)
+					{
+					case "Battery" : 
+						{
+							
+						}
+					case "Fuel Map":
+						{
+							
+						}
+					case "General Information":
+						{
+							
+						}
+					case "Inlet Air Pressure":
+						{
+						
+						}
+					case "Lambda":
+						{
+						
+						}
+					case "Manifold Air Pressure":
+						{
+						
+						}
+					case "Spark Map":
+						{
+						
+						}
+					case "Water Temperature":
+						{
+						
+						}
+					case "Coolant Temperature":
+						{
+							mainFrame_FRA.getGraphsPanel().enableCoolantTemperature();
+						}
+					case "Exhaust Temperature":
+						{
+							
+						}
+					case "GPS":
+						{
+						
+						}
+					case "Oil Temperature":
+						{
+				
+						}
+					case "Pedal Forces":
+						{
+						
+						}
+					case "Steering Angle":
+						{
+						
+						}
+					case "Wheel Speed":
+						{
+						
+						}
+					}
+					
+				}
+				
+			});
 		}
 	}
 	
@@ -183,6 +264,8 @@ public class GUI_MenuBar extends JMenuBar{
 			externalSensorMenuItems[i].setSelected(false);
 			menus[2].add(externalSensorMenuItems[i]);
 		}
+		
+		addActionListenerToExternalSensorsMenu();
 	
 	}
 	

@@ -73,16 +73,21 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	
 	private void addExternalChartsToExternalPanel()
 	{
+		
 		for(int i = 0; i<externalTimeSeriesChart.length;i++)
 		{
 			if(externalTimeSeriesEnabled[i] ==true)
 			{
 				externalSensor_PAN.add(externalTimeSeriesChart[i].getChartPanel());
 			}
+			else if(externalTimeSeriesEnabled[i]==false)
+			{
+				externalSensor_PAN.remove(externalTimeSeriesChart[i].getChartPanel());
+			}
+			
 		}
 		this.add(externalSensor_PAN);
 	}
-	
 	
 	public void updateExternalSensorsPanel(float value)
 	{
@@ -97,6 +102,22 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 		System.out.println(width2);
 		chart.setWidth(width2);
 	
+	}
+	
+	
+	
+	public void enableCoolantTemperature()
+	{
+		if (externalTimeSeriesEnabled[0] == false)
+		{
+			externalTimeSeriesEnabled[0] = true;
+		}
+		else
+		{
+			externalTimeSeriesEnabled[0] = false;
+		}
+		
+		addExternalChartsToExternalPanel();
 	}
 
 
