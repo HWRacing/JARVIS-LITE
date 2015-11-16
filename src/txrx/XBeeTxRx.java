@@ -39,7 +39,15 @@ public class XBeeTxRx {
 	public void openConnectionToXbee() throws XBeeException
 	{
 		//Try and open the connection to the xbee else throw an error message.
-			localXBee.open();
+		localXBee.open();
+		
+		//Get the local network of the device (PAN ID set to 1A84)
+		XBeeNetwork network = localXBee.getNetwork();
+		
+		//Set discovery process
+		network.setDiscoveryTimeout(15000);
+		network.addDiscoveryListener(new NetworkListener(startProgram));
+		network.startDiscoveryProcess();
 		
 		// Create the data reception listener
 		Listener DataListener = new Listener(startProgram);
@@ -52,3 +60,6 @@ public class XBeeTxRx {
 	
 	
 }
+
+
+
