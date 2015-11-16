@@ -201,6 +201,7 @@ public class GUI_MainFrame extends JXFrame implements Runnable,WindowListener {
 		return graphs_PAN;
 	}
 	
+	
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub

@@ -23,6 +23,7 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	GRAPH_BasicTimeSeriesChart [] externalTimeSeriesChart = new GRAPH_BasicTimeSeriesChart[5];
 	Thread [] externalTimeSeriesThreads = new Thread[externalTimeSeriesChart.length];
 	boolean [] externalTimeSeriesEnabled = new boolean[externalTimeSeriesChart.length];
+	int externalTimeSeriesEnabledCounter;
 	
 	GRAPH_BasicTimeSeriesChart [] ecuTimeSeriesChart = new GRAPH_BasicTimeSeriesChart[2];
 	
@@ -70,6 +71,19 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 		ecuSensor_PAN = new JPanel(new FlowLayout());
 	}
 	
+	private GridLayout getOptimumLayout()
+	{
+		
+		//Screen Resolution of Team Laptop 1366*768
+		int widthOfFrame = parent_FRA.getWidth() - 50;
+		
+		if(widthOfFrame<)
+		int externalTimeSeriesEnabledCounter
+		
+		
+		return null;
+	}
+	
 	
 	private void addExternalChartsToExternalPanel()
 	{
@@ -82,7 +96,14 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 			}
 			else if(externalTimeSeriesEnabled[i]==false)
 			{
-				externalSensor_PAN.remove(externalTimeSeriesChart[i].getChartPanel());
+				try{
+					externalSensor_PAN.remove(externalTimeSeriesChart[i].getChartPanel());
+				}
+				catch (NullPointerException e)
+				{
+					
+				}
+
 			}
 			
 		}
@@ -106,20 +127,21 @@ public class GUI_GraphsPanel extends JPanel implements ComponentListener {
 	
 	
 	
-	public void enableCoolantTemperature()
+	public void enableExternalGraph(int graphCounter)
 	{
-		if (externalTimeSeriesEnabled[0] == false)
+		if (externalTimeSeriesEnabled[graphCounter] == false)
 		{
-			externalTimeSeriesEnabled[0] = true;
+			externalTimeSeriesEnabled[graphCounter] = true;
+			externalTimeSeriesEnabledCounter++;
 		}
 		else
 		{
-			externalTimeSeriesEnabled[0] = false;
+			externalTimeSeriesEnabled[graphCounter] = false;
+			externalTimeSeriesEnabledCounter--;
 		}
 		
 		addExternalChartsToExternalPanel();
 	}
-
 
 	public void componentResized(ComponentEvent e) {
 		// TODO Auto-generated method stub

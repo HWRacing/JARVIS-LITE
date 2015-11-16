@@ -1,4 +1,4 @@
-package com.digi.xbee.hwracing;
+package XBeeCom.src.TX;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

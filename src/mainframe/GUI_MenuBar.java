@@ -163,31 +163,32 @@ public class GUI_MenuBar extends JMenuBar{
 						}
 					case "Coolant Temperature":
 						{
-							mainFrame_FRA.getGraphsPanel().enableCoolantTemperature();
+							mainFrame_FRA.getGraphsPanel().enableExternalGraph(0);
 						}
 					case "Exhaust Temperature":
 						{
-							
+							mainFrame_FRA.getGraphsPanel().enableExternalGraph(1);
 						}
 					case "GPS":
 						{
-						
+
 						}
 					case "Oil Temperature":
 						{
-				
+							mainFrame_FRA.getGraphsPanel().enableExternalGraph(2);
 						}
 					case "Pedal Forces":
 						{
-						
+							mainFrame_FRA.getGraphsPanel().enableExternalGraph(3);
 						}
 					case "Steering Angle":
-						{
+						{							
+							mainFrame_FRA.getGraphsPanel().enableExternalGraph(4);
 						
 						}
 					case "Wheel Speed":
 						{
-						
+							mainFrame_FRA.getGraphsPanel().enableExternalGraph(5);
 						}
 					}
 					

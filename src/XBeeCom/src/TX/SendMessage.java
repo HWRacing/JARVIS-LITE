@@ -1,4 +1,4 @@
-package com.digi.xbee.hwracing;
+package XBeeCom.src.TX;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +39,7 @@ public class SendMessage {
 		final String data = "hola";
 		
 		// Instantiate an XBee device object.
-		final XBeeDevice myLocalXBeeDevice = new XBeeDevice("/dev/ttyUSB1", 9600);
+		final XBeeDevice myLocalXBeeDevice = new XBeeDevice("COM3", 9600);
 		try {
 			myLocalXBeeDevice.open();
 		} catch (XBeeException e) {
@@ -49,7 +49,7 @@ public class SendMessage {
 		
 		// Instantiate a remote XBee device object.
 		final RemoteXBeeDevice myRemoteXBeeDevice = new RemoteXBeeDevice(myLocalXBeeDevice,
-		                                   new XBee64BitAddress("0013A200408BEE07"));
+		                                   new XBee64BitAddress("0013A20040A2B995"));
        
 		actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {      
